@@ -1,2 +1,2 @@
-# laravel-task
-laravel pacake untuk memanage task
+# Laravel Task
+laravel package untuk task management
