@@ -1,5 +1,5 @@
 {
-    "name": "bantenprov/laravel-task",
+    "name": "bantenprov/task",
     "description": "Repository untuk membuat atau melakukan proses data Organisasi Perangkat Daerah",
     "authors": [
         {
@@ -16,7 +16,7 @@
             "src/helpers/helpers.php"
         ],
         "psr-4": {
-            "Bantenprov\\LaravelTask\\": "src/Bantenprov/LaravelTask"
+            "Bantenprov\\Task\\": "src/Bantenprov/Task"
         }
     },
     "minimum-stability": "stable"
