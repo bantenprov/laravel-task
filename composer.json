@@ -1,6 +1,6 @@
 {
     "name": "bantenprov/task",
-    "description": "Repository untuk membuat atau melakukan proses data Organisasi Perangkat Daerah",
+    "description": "Repository untuk memberikan tugas kepada staff yang ditentukan",
     "authors": [
         {
             "name": "bantenprov",
