@@ -46,3 +46,4 @@ class Task extends Model
         return $this->hasMany(config('task.models.comment'),'task_id');
     }
 }
+
