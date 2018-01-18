@@ -121,8 +121,8 @@ class TaskServiceProvider extends ServiceProvider
         $this->loadViewsFrom($packageViewsPath, 'task');
 
         $this->publishes([
-            $packageViewsPath => resource_path('views/vendor/task'),
-        ], 'views');
+            $packageViewsPath => resource_path('views/vendor'),
+        ], 'task-views');
     }
 
     /**
@@ -155,3 +155,4 @@ class TaskServiceProvider extends ServiceProvider
         ], 'migrations');
     }
 }
+
