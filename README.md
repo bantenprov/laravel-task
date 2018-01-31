@@ -3,7 +3,7 @@ laravel package untuk task management
 
 ## Install :
 ```bash
-$ composer require bantenprov/comment:dev-master
+$ composer require bantenprov/task:dev-master
 ```
 
 ## Edit `app/config.php`
