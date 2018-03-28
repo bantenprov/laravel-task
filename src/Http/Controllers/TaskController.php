@@ -38,12 +38,11 @@ class TaskController extends Controller
 
         foreach($tasks as $task)
         {
-            $total = $this->taskModel->whereNotNull('member_id')->where('staf_id',$task->staf_id)->count();
+            $total = $this->taskModel->whereNotNull('member_id')->where('parrent_id',$task->id)->count();
             
             array_set($task,'total_member',$total);
         }        
-                
-        //return view('task::task.index',compact('tasks'));
+                        
         return $tasks;
     }
 
@@ -52,11 +51,9 @@ class TaskController extends Controller
 
         $projects = $this->projectModel->all();
         $stafs = $this->stafModel->all();
-        
-        //$response = (object) ['projects' => $projects,'stafs' => $stafs];
+                
         return $projects;
-
-        //return view('task::task.create',compact('projects','stafs'));
+        
     }
 
     public function store($req)
@@ -68,15 +65,11 @@ class TaskController extends Controller
             'start_date' => 'required|date',
             'end_date' => 'required|date',
         ]);
-        //dd($validator->fails());
+        
         if ($validator->fails()) {
             return redirect()->route('taskCreate')
             ->withErrors($validator)
             ->withInput();
-        }
-
-        if($this->taskModel->where('staf_id',$req['project_id'])->count() > 0){
-            return redirect()->back()->withErrors('This Staf Allready Project');
         }
         
 
@@ -92,8 +85,7 @@ class TaskController extends Controller
     public function addMember($task_id)
     {
         $members = $this->memberModel->all();
-        $task =  $this->taskModel->find($task_id);
-        //return view('task::task.add_member',compact('members','task'));
+        $task =  $this->taskModel->find($task_id);        
 
         $response = (object) ['task' => $task,'members' => $members];
         return $response;
@@ -101,6 +93,7 @@ class TaskController extends Controller
 
     public function storeAddMember($task_id,$req)
     {
+        
         // $a = $req;
         // dd($req->member_id);
         $validator = Validator::make($req, [
@@ -129,23 +122,17 @@ class TaskController extends Controller
             'member_id' => $req['member_id'],
             'start_date' => $task->start_date,
             'end_date' => $task->end_date,
-            'description' => $task->description
+            'description' => $task->description,
+            'parrent_id' => $task->id
         ]);
 
         return redirect()->back()->with('message','Success add member to '.$task->name);
     }
 
     public function show($id)
-    {
+    {        
         $task =  $this->taskModel->find($id);
-        $members = $this->taskModel->whereNotNull('member_id')->where('staf_id',$task->staf_id)->get();
-        
-        // if($view){
-        //     return view('task::task.show',compact('task','members'));
-        // }else{
-        //     $response = (object) ['task' => $task,'members' => $members];
-        //     return $response;
-        // }
+        $members = $this->taskModel->whereNotNull('member_id')->where('parrent_id',$task->id)->get();
 
         $response = (object) ['task' => $task,'members' => $members];
         return $response;
