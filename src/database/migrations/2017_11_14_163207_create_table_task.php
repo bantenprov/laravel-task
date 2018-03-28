@@ -18,6 +18,7 @@ class CreateTableTask extends Migration
             $table->integer('project_id');
             $table->integer('staf_id');
             $table->integer('member_id')->nullable();
+            $table->integer('parrent_id')->nullable();
             $table->string('name',255);
             $table->datetime('start_date');
             $table->datetime('end_date');

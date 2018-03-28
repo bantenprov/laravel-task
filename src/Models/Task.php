@@ -17,7 +17,7 @@ class Task extends Model
     
     public $timestamps = true;
 
-    protected $fillable = ['project_id','staf_id','member_id','name','description','start_date','end_date'];
+    protected $fillable = ['project_id','staf_id','member_id','name','description','start_date','end_date','parrent_id'];
 
     protected $hidden = ['deleted_at'];
 
@@ -41,9 +41,7 @@ class Task extends Model
     }
 
     public function getComment()
-    {
-        //return $this->belongsTo(config('task.models.comment'),'id','task_id');
+    {        
         return $this->hasMany(config('task.models.comment'),'task_id');
     }
 }
-
